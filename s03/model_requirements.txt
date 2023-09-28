@@ -1,0 +1,4 @@
+to use models in django you 
+must know about object oriented programming in python 
+and sql syntax
+
