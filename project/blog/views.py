@@ -1,21 +1,34 @@
 from django.shortcuts import render
+from .models import Post
+
 
 # Create your views here.
 
 def about(request):
-    return render(request, "blog/about.html",{})
+    return render(request, "blog/about.html", {})
+
 
 def blog(request):
-    return render(request, "blog/blog.html",{})
+    posts = Post.objects.all()
+    return render(request, "blog/blog.html", {"posts": posts})
+
+
+def post_detail(request, id):
+    print(id)
+    posts = [Post.objects.get(id=id)]
+    return render(request, "blog/blog.html", {"posts": posts})
+
 
 def contact(request):
-    return render(request, "blog/contact.html",{})
+    return render(request, "blog/contact.html", {})
+
 
 def features(request):
-    return render(request, "blog/features.html",{})
+    return render(request, "blog/features.html", {})
+
 
 def index(request):
-    return render(request, "blog/index.html",{})
+    return render(request, "blog/index.html", {})
 
 
 # about.html

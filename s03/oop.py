@@ -4,6 +4,12 @@ from datetime import datetime
 # class definition
 
 
+
+class Dog:
+    def __init__(self):
+        self.name = "dog"
+
+
 class Person:
     # class attribute
     arm = 2
@@ -19,6 +25,7 @@ class Person:
         self.password = password
         # self.create_at = datetime.now()
         self.id = None
+        self.my_dog = Dog()
 
     # custom method
     # we call def in class as method
@@ -79,6 +86,7 @@ class Person:
 # print(p2[0])
 p2 = Person.filter(password="123")
 print(p2)
+
 
 # p2 = Person("ali")
 # print(p1.arm)

@@ -16,14 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import about, blog, contact, features, index
+from blog.views import about, blog, contact, features, index, post_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('about/', about),
-    path('blog/', blog),
-    path('contact/', contact),
-    path('features/', features),
-    path('', index),
+    path('about/', about, name="about"),
+    path('blog/', blog, name="blog"),
+    path('blog/<int:id>', post_detail, name="post-detail"),
+    path('contact/', contact, name="contact"),
+    path('features/', features, name="features"),
+    path('', index, name="index"),
 
 ]
