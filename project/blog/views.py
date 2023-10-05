@@ -16,7 +16,7 @@ def blog(request):
 def post_detail(request, id):
     # print(id)
     post_object = Post.objects.get(id=id)
-    post_object.comment_set.all()
+    # post_object.comment_set.all()
     return render(request, "blog/post_detail.html", {"post_from_view": post_object})
 
 
