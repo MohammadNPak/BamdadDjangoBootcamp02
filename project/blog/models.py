@@ -7,3 +7,15 @@ class Post(models.Model):
     create_at = models.DateTimeField()
     title = models.CharField(max_length=200)
     body = models.TextField()
+
+    def __str__(self):
+        return f"post-{self.id}: {self.title}"
+
+
+class Comment(models.Model):
+    create_at = models.DateTimeField(auto_now_add=True)
+    body = models.TextField()
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"comment-{self.id}: {self.body[:30]}"

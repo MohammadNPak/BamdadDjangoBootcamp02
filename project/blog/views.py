@@ -14,9 +14,10 @@ def blog(request):
 
 
 def post_detail(request, id):
-    print(id)
-    posts = [Post.objects.get(id=id)]
-    return render(request, "blog/blog.html", {"posts": posts})
+    # print(id)
+    post_object = Post.objects.get(id=id)
+    post_object.comment_set.all()
+    return render(request, "blog/post_detail.html", {"post_from_view": post_object})
 
 
 def contact(request):

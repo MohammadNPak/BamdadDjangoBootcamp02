@@ -31,13 +31,15 @@
     <link rel="stylesheet" href="{% static 'blog/css/owl.carousel.min.css' %}" />
     <link rel="stylesoeet" href="{% static 'blog/css/owl.theme.default.min.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
+
+    {% block extera_css %}
+
+    {% endblock %}
   </head>
   <body>
-
     {% block content %}
-    
-    {% endblock content %}
 
+    {% endblock %}
 
     <!-- copyright section end -->
     <!-- Javascript files -->

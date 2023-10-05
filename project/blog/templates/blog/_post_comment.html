@@ -1,0 +1,95 @@
+{% load static %}
+<div class="row">
+  <div class="col-lg-8 col-sm-12">
+    <div class="about_img">
+      <img src="{% static 'blog/images/img-8.png' %}" />
+    </div>
+    <div class="like_icon">
+      <img src="{% static 'blog/images/like-icon.png' %}" />
+    </div>
+    <p class="post_text">{{ p.create_at }}</p>
+    <h2 class="most_text">{{ p.title }}</h2>
+    <p class="lorem_text">{{ p.body }}</p>
+    <div class="social_icon_main">
+      {% comment %}comment section{% endcomment %}
+      {% comment %} <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" /> {% endcomment %}
+      {% comment %} {{ p.comment_set.all }} {% endcomment %}
+
+      <section class="content-item" id="comments">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <form>
+                <h3 class="pull-left">New Comment</h3>
+                <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                <fieldset>
+                  <div class="row">
+                    <div class="col-sm-3 col-lg-2 hidden-xs">
+                      <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                      <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                    </div>
+                  </div>
+                </fieldset>
+              </form>
+
+              <h3>4 Comments</h3>
+
+              {% for comment in p.comment_set.all %}
+                {{ comment.body }}
+
+                <div class="media">
+                  <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" /></a>
+                  <div class="media-body">
+                    <h4 class="media-heading">John Doe</h4>
+                    <p>{{ comment.body }}</p>
+                    <ul class="list-unstyled list-inline media-detail pull-left">
+                      <li>
+                        <i class="fa fa-calendar"></i>{{ comment.create_at|timesince }}
+                      </li>
+                      <li>
+                        <i class="fa fa-thumbs-up"></i>13
+                      </li>
+                    </ul>
+                    <ul class="list-unstyled list-inline media-detail pull-right">
+                      <li class="">
+                        <a href="">Like</a>
+                      </li>
+                      <li class="">
+                        <a href="">Reply</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+      {% comment %}end of comment section{% endcomment %}
+    </div>
+  </div>
+</div>
+
+<div class="col-lg-4 col-sm-12">
+  <div class="about_main">
+    <h1 class="follow_text">CONNECT & FOLLOW</h1>
+    <div class="follow_icon">
+      <ul>
+        <li>
+          <a href="#"><img src="{% static 'blog/images/fb-icon-1.png' %}" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="{% static 'blog/images/twitter-icon-1.png' %}" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="{% static 'blog/images/linkedin-icon-1.png' %}" /></a>
+        </li>
+        <li>
+          <a href="#"><img src="{% static 'blog/images/instagram-icon-1.png' %}" /></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

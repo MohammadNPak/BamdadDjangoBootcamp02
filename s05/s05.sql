@@ -1,11 +1,13 @@
 create table post(id integer primary key, title text);
 
+------------------------------------------------
 insert into
     post (title)
 values
     ('first post'),
     ('second post');
 
+------------------------------------------------
 CREATE TABLE comment(
     id integer primary key,
     body text,
@@ -13,26 +15,31 @@ CREATE TABLE comment(
     FOREIGN KEY (post_id) REFERENCES post(id)
 );
 
+------------------------------------------------
 insert into
     comment (body, post_id)
 values
     ('first comment of first post', 1);
 
+------------------------------------------------
 insert into
     comment (body, post_id)
 values
     ('second comment of first post', 1);
 
+------------------------------------------------
 insert into
     comment (body, post_id)
 values
     ('first comment of second post', 2);
 
+------------------------------------------------
 insert into
     comment (body, post_id)
 values
     ('second comment of second post', 2);
 
+-----------------------------------------------
 select
     *
 from
@@ -47,6 +54,7 @@ from
 -- | 3  | first comment of second post  | 2       | 2  | second post |
 -- | 4  | second comment of second post | 2       | 2  | second post |
 -- +----+-------------------------------+---------+----+-------------+
+-----------------------------------------------
 select
     comment.id as comment_id,
     post.id as post_id,
