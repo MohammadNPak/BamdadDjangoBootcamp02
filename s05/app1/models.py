@@ -9,4 +9,4 @@ class User(models.Model):
 
 class Product(models.Model):
     name = models.TextField()
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="my_product")
