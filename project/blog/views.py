@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import Post, Comment
 from django.http import HttpResponse
+from django.urls import reverse
+from django.shortcuts import redirect
+from django.contrib import messages
 
 
 # Create your views here.
@@ -25,8 +28,8 @@ def post_detail(request, id):
         comment_body = request.POST["comment_body"]
         comment = Comment.objects.create(body=comment_body, post=post_object)
         comment.save()
-
-        return HttpResponse("comment was saved successfully")
+        messages.add_message(request, messages.INFO, f"comment was saved successfully!")
+        return redirect(reverse("post-detail", kwargs={"id": id}))
 
 
 # http request method:          crud operation in database

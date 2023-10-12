@@ -7,6 +7,8 @@
   <!-- blog section start -->
   <div class="about_section layout_padding">
     <div class="container">
+      {% include "_messages.html" %}
+
       {% for post in posts %}
       {% comment %} {{post}} {% endcomment %}
         {% include 'blog/_post.html' with post=post %}
