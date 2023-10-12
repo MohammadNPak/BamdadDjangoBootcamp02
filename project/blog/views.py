@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Comment
+from django.http import HttpResponse
 
 
 # Create your views here.
+
 
 def about(request):
     return render(request, "blog/about.html", {})
@@ -14,10 +16,24 @@ def blog(request):
 
 
 def post_detail(request, id):
-    # print(id)
     post_object = Post.objects.get(id=id)
-    # post_object.comment_set.all()
-    return render(request, "blog/post_detail.html", {"post_from_view": post_object})
+    if request.method == "GET":
+        return render(request, "blog/post_detail.html", {"post_from_view": post_object})
+    elif request.method == "POST":
+        # print(request.POST["comment_body"])
+
+        comment_body = request.POST["comment_body"]
+        comment = Comment.objects.create(body=comment_body, post=post_object)
+        comment.save()
+
+        return HttpResponse("comment was saved successfully")
+
+
+# http request method:          crud operation in database
+# get                           retrive select
+# post                          create insert
+# put                           update
+# delete                        delete
 
 
 def contact(request):

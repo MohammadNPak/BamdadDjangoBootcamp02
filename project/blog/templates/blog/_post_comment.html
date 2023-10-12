@@ -19,7 +19,8 @@
         <div class="container">
           <div class="row">
             <div class="col-sm-12">
-              <form>
+              <form action="{% url 'post-detail' p.id %}" method="post">
+                {% csrf_token %}
                 <h3 class="pull-left">New Comment</h3>
                 <button type="submit" class="btn btn-normal pull-right">Submit</button>
                 <fieldset>
@@ -28,13 +29,13 @@
                       <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" />
                     </div>
                     <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                      <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                      <textarea class="form-control" id="message" placeholder="Your message" required="" name="comment_body"></textarea>
                     </div>
                   </div>
                 </fieldset>
               </form>
 
-              <h3>4 Comments</h3>
+              <h3>{{ p.comment_set.count }} Comments</h3>
 
               {% for comment in p.comment_set.all %}
                 {{ comment.body }}
