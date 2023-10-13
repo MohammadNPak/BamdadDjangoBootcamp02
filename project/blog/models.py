@@ -4,9 +4,10 @@ from django.db import models
 
 
 class Post(models.Model):
-    create_at = models.DateTimeField()
+    create_at = models.DateTimeField(auto_now_add=True, blank=True)
     title = models.CharField(max_length=200)
     body = models.TextField()
+    picture = models.ImageField(upload_to="post/")
 
     def __str__(self):
         return f"post-{self.id}: {self.title}"

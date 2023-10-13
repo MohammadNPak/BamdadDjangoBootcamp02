@@ -19,6 +19,10 @@ from django.urls import path, include
 from blog.views import about, blog, contact, features, index, post_detail
 from contactus import urls as contact_url
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("about/", about, name="about"),
@@ -29,3 +33,6 @@ urlpatterns = [
     path("", index, name="index"),
     path("contact/", include(contact_url)),
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

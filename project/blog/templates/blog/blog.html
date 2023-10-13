@@ -9,6 +9,18 @@
     <div class="container">
       {% include "_messages.html" %}
 
+      {% for message in messages  %}
+      {{message}}
+      {% endfor %}
+
+      <form action="{% url "blog" %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {{form}}
+        <button type="submit">submit</button>
+      </form>
+
+
       {% for post in posts %}
       {% comment %} {{post}} {% endcomment %}
         {% include 'blog/_post.html' with post=post %}

@@ -4,7 +4,8 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.shortcuts import redirect
 from django.contrib import messages
-
+from .forms import PostForm
+from datetime import datetime
 
 # Create your views here.
 
@@ -15,7 +16,22 @@ def about(request):
 
 def blog(request):
     posts = Post.objects.all()
-    return render(request, "blog/blog.html", {"posts": posts})
+    if request.method == "GET":
+        form = PostForm()
+        return render(request, "blog/blog.html", {"posts": posts, "form": form})
+    elif request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        form.create_at = datetime.now()
+        if form.is_valid():
+            print("valid")
+            form.save()
+            messages.add_message(
+                request, messages.INFO, f"comment was saved successfully!"
+            )
+            return redirect(reverse("blog"))
+        else:
+            print("invalid")
+            return render(request, "blog/blog.html", {"posts": posts, "form": form})
 
 
 def post_detail(request, id):
