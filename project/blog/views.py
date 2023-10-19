@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from .forms import PostForm
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -14,6 +15,7 @@ def about(request):
     return render(request, "blog/about.html", {})
 
 
+@login_required
 def blog(request):
     posts = Post.objects.all()
     if request.method == "GET":
@@ -21,16 +23,19 @@ def blog(request):
         return render(request, "blog/blog.html", {"posts": posts, "form": form})
     elif request.method == "POST":
         form = PostForm(request.POST, request.FILES)
-        form.create_at = datetime.now()
+        # form.create_at = datetime.now()
         if form.is_valid():
-            print("valid")
+            # print("valid")
             form.save()
             messages.add_message(
                 request, messages.INFO, f"comment was saved successfully!"
             )
             return redirect(reverse("blog"))
         else:
-            print("invalid")
+            messages.add_message(
+                request, messages.ERROR, f"comment was Not saved successfully!"
+            )
+            # print("invalid")
             return render(request, "blog/blog.html", {"posts": posts, "form": form})
 
 

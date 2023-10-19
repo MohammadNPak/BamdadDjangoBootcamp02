@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from blog.views import about, blog, contact, features, index, post_detail
 from contactus import urls as contact_url
+from accounts import urls as accounts_url
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -32,6 +33,7 @@ urlpatterns = [
     path("features/", features, name="features"),
     path("", index, name="index"),
     path("contact/", include(contact_url)),
+    path("accounts/", include(accounts_url)),
 ]
 
 
